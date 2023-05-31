@@ -14,6 +14,8 @@ namespace Webb_MovieShop.Data
         public DbSet<Webb_MovieShop.Models.Actor> Actor { get; set; } = default!;
         public DbSet<Webb_MovieShop.Models.Movie> Movie { get; set; } = default!;
 
+        public DbSet<Webb_MovieShop.Models.Actor_Movie> Actor_Movie { get; set; } = default!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Actor_Movie>().HasKey(am => new

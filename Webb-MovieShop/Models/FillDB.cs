@@ -59,6 +59,36 @@ namespace Webb_MovieShop.Models
                     context.SaveChanges();
                 }
                 */
+                //Lägger till skådespelare i Db om det inte redan finns några
+                if (context.Actor.Any())
+                {
+                    return;
+                }
+                context.Actor.AddRange(new List<Actor>()
+                {
+                    new Actor()
+                    {
+                        Name = "Christian Bale",
+                        Age = 49
+                    },
+                    new Actor()
+                    {
+                        Name = "Viggo Mortensen",
+                        Age = 64
+                    },
+                    new Actor()
+                    {
+                        Name = "Tom Hanks",
+                        Age = 66
+                    },
+                    new Actor()
+                    {
+                        Name = "Leonardo DiCaprio",
+                        Age = 48
+                    },
+                });
+                context.SaveChanges();
+
                 if (context.Movie.Any())
                 { 
                     return; 
@@ -97,6 +127,36 @@ namespace Webb_MovieShop.Models
                         ImgUrl = "https://posters.movieposterdb.com/10_06/2010/1375666/l_1375666_07030c72.jpg"
                     }
                     });
+                context.SaveChanges();
+
+                //Skådespelare och filmer
+                if (context.Actor_Movie.Any())
+                {
+                    return;
+                }
+                context.Actor_Movie.AddRange(new List<Actor_Movie>()
+                {
+                    new Actor_Movie()
+                    {
+                        ActorId = 1,
+                        MovieId = 1
+                    },
+                    new Actor_Movie()
+                    {
+                        ActorId = 2,
+                        MovieId = 2
+                    },
+                    new Actor_Movie()
+                    {
+                        ActorId = 3,
+                        MovieId = 3
+                    },
+                    new Actor_Movie()
+                    {
+                        ActorId = 4,
+                        MovieId = 4
+                    }
+                });
                 context.SaveChanges();
 
                 if (context.Roles.Any())
