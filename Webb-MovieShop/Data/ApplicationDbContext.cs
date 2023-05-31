@@ -9,7 +9,11 @@ namespace Webb_MovieShop.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            Database.EnsureCreated();
         }
+        public DbSet<Webb_MovieShop.Models.Actor> Actor { get; set; } = default!;
+        public DbSet<Webb_MovieShop.Models.Movie> Movie { get; set; } = default!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Actor_Movie>().HasKey(am => new
@@ -24,7 +28,6 @@ namespace Webb_MovieShop.Data
 
             base.OnModelCreating(modelBuilder);
         }
-        public DbSet<Webb_MovieShop.Models.Actor> Actor { get; set; } = default!;
-        public DbSet<Webb_MovieShop.Models.Movie> Movie { get; set; } = default!;
+        
     }
 }

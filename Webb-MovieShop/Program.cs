@@ -34,6 +34,7 @@ namespace Webb_MovieShop
 
                 FillDB.Initialize(services);
             }
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
