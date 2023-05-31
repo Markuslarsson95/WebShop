@@ -2,12 +2,13 @@
 
 namespace Webb_MovieShop.Models
 {
-    public class Snack
+    public class Actor
     {
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public decimal Price { get; set; }
+        public int Age { get; set; }
+
+        public List<Actor_Movie> Actors_Movies { get; set; }
     }
 }

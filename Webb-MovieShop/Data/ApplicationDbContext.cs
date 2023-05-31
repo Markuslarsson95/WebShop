@@ -10,7 +10,21 @@ namespace Webb_MovieShop.Data
             : base(options)
         {
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Actor_Movie>().HasKey(am => new
+            {
+                am.ActorId,
+                am.MovieId
+            });
+
+            modelBuilder.Entity<Actor_Movie>().HasOne(m => m.Movie).WithMany(am => am.Actors_Movies).HasForeignKey(m => m.MovieId);
+            modelBuilder.Entity<Actor_Movie>().HasOne(m => m.Actor).WithMany(am => am.Actors_Movies).HasForeignKey(m => m.ActorId);
+
+
+            base.OnModelCreating(modelBuilder);
+        }
+        public DbSet<Webb_MovieShop.Models.Actor> Actor { get; set; } = default!;
         public DbSet<Webb_MovieShop.Models.Movie> Movie { get; set; } = default!;
-        public DbSet<Webb_MovieShop.Models.Snack> Snack { get; set; } = default!;
     }
 }

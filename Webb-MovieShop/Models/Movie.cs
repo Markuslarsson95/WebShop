@@ -9,6 +9,8 @@ namespace Webb_MovieShop.Models
         public string Title { get; set; }
         public string Genre { get; set; }
         public string Description { get; set; }
-        public decimal Price { get; set; }
+        public string ImgUrl { get; set; }
+
+        public List<Actor_Movie> Actors_Movies { get; set; }
     }
 }
