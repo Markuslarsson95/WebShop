@@ -26,7 +26,7 @@ namespace Webb_MovieShop
 
             var app = builder.Build();
             
-            
+            /*
             //Anropar fillDB och fyller i DB om den �r tom
             using (var scope = app.Services.CreateScope())
             {
@@ -34,7 +34,7 @@ namespace Webb_MovieShop
 
                 FillDB.Initialize(services);
             }
-
+            */
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

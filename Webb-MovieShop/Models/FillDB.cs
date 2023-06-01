@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Webb_MovieShop.Data;
@@ -16,84 +17,42 @@ namespace Webb_MovieShop.Models
                 var roleStore = new RoleStore<IdentityRole>(context);
                 var userStore = new UserStore<IdentityUser>(context);
 
-                //context.Database.EnsureCreated();
 
-                /*
-                // Lägger till filmer i DB om inga finns
-                if (!context.Movie.Any())
-                {
-                    context.Movie.AddRange(new List<Movie>()
-                    {
-                        new Movie()
-                    {
-                        Title = "The Dark Knight",
-                        Genre = "Action",
-                        Description = "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
-                        ImgUrl = "https://posters.movieposterdb.com/08_05/2008/468569/s_468569_f0e2cd63.jpg"
-                    },
-
-                    new Movie()
-                    {
-                        Title = "The Lord of the Rings: The Return of the King",
-                        Genre = "Adventure",
-                        Description = "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
-                        ImgUrl = "https://posters.movieposterdb.com/04_12/2003/0167260/s_183_0167260_6815154e.jpg"
-                    },
-
-                    new Movie()
-                    {
-                        Title = "Forrest Gump",
-                        Genre = "Drama",
-                        Description = "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart.",
-                        ImgUrl = "https://posters.movieposterdb.com/05_06/1994/0109830/s_21293_0109830_af6ba7a1.jpg"
-                    },
-
-                    new Movie()
-                    {
-                        Title = "Inception",
-                        Genre = "Sci-Fi",
-                        Description = "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.",
-                        ImgUrl = "https://posters.movieposterdb.com/10_06/2010/1375666/l_1375666_07030c72.jpg"
-                    }
-                    });
-                    context.SaveChanges();
-                }
-                */
                 //Lägger till skådespelare i Db om det inte redan finns några
-                if (context.Actor.Any())
+                if (context.Producers.Any())
                 {
                     return;
                 }
-                context.Actor.AddRange(new List<Actor>()
+                context.Producers.AddRange(new List<Producer>()
                 {
-                    new Actor()
+                    new Producer()
                     {
-                        Name = "Christian Bale",
-                        Age = 49
+                        Name = "Christopher Nolan",
+                        Age = 52
                     },
-                    new Actor()
+                    new Producer()
                     {
-                        Name = "Viggo Mortensen",
-                        Age = 64
+                        Name = "Peter Jackson",
+                        Age = 61
                     },
-                    new Actor()
+                    new Producer()
                     {
-                        Name = "Tom Hanks",
-                        Age = 66
+                        Name = "Robert Zemeckis",
+                        Age = 71
                     },
-                    new Actor()
+                    new Producer()
                     {
-                        Name = "Leonardo DiCaprio",
-                        Age = 48
+                        Name = "Christopher Nolan",
+                        Age = 52
                     },
                 });
                 context.SaveChanges();
 
-                if (context.Movie.Any())
+                if (context.Movies.Any())
                 { 
                     return; 
                 }
-                context.Movie.AddRange(new List<Movie>()
+                context.Movies.AddRange(new List<Movie>()
                     {
                         new Movie()
                     {
@@ -127,36 +86,6 @@ namespace Webb_MovieShop.Models
                         ImgUrl = "https://posters.movieposterdb.com/10_06/2010/1375666/l_1375666_07030c72.jpg"
                     }
                     });
-                context.SaveChanges();
-
-                //Skådespelare och filmer
-                if (context.Actor_Movie.Any())
-                {
-                    return;
-                }
-                context.Actor_Movie.AddRange(new List<Actor_Movie>()
-                {
-                    new Actor_Movie()
-                    {
-                        ActorId = 1,
-                        MovieId = 1
-                    },
-                    new Actor_Movie()
-                    {
-                        ActorId = 2,
-                        MovieId = 2
-                    },
-                    new Actor_Movie()
-                    {
-                        ActorId = 3,
-                        MovieId = 3
-                    },
-                    new Actor_Movie()
-                    {
-                        ActorId = 4,
-                        MovieId = 4
-                    }
-                });
                 context.SaveChanges();
 
                 if (context.Roles.Any())

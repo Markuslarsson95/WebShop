@@ -24,12 +24,12 @@ namespace Webb_MovieShop.Controllers
         // Hämtar film från sökfält
         public async Task<IActionResult> Index(string searchString)
         {
-            if (_context.Movie == null)
+            if (_context.Movies == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Movie'  is null.");
             }
 
-            var movies = from m in _context.Movie
+            var movies = from m in _context.Movies
                          select m;
 
             if (!String.IsNullOrEmpty(searchString))
@@ -44,12 +44,12 @@ namespace Webb_MovieShop.Controllers
         //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Movie == null)
+            if (id == null || _context.Movies == null)
             {
                 return NotFound();
             }
 
-            var movie = await _context.Movie
+            var movie = await _context.Movies
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (movie == null)
             {
@@ -86,12 +86,12 @@ namespace Webb_MovieShop.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Movie == null)
+            if (id == null || _context.Movies == null)
             {
                 return NotFound();
             }
 
-            var movie = await _context.Movie.FindAsync(id);
+            var movie = await _context.Movies.FindAsync(id);
             if (movie == null)
             {
                 return NotFound();
@@ -138,12 +138,12 @@ namespace Webb_MovieShop.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Movie == null)
+            if (id == null || _context.Movies == null)
             {
                 return NotFound();
             }
 
-            var movie = await _context.Movie
+            var movie = await _context.Movies
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (movie == null)
             {
@@ -158,14 +158,14 @@ namespace Webb_MovieShop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Movie == null)
+            if (_context.Movies == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Movie'  is null.");
             }
-            var movie = await _context.Movie.FindAsync(id);
+            var movie = await _context.Movies.FindAsync(id);
             if (movie != null)
             {
-                _context.Movie.Remove(movie);
+                _context.Movies.Remove(movie);
             }
             
             await _context.SaveChangesAsync();
@@ -174,7 +174,7 @@ namespace Webb_MovieShop.Controllers
 
         private bool MovieExists(int id)
         {
-          return (_context.Movie?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Movies?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

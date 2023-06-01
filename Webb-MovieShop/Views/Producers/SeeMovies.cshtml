@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<Webb_MovieShop.Models.Movie>
+
+<h1>Movies Produced</h1>
+@foreach(var movie in Model)
+{
+    <h2>@Html.DisplayFor(model => movie.Title)</h2>
+    <p>@Html.DisplayFor(model => movie.Title) has produced the following movies</p>
+    <ul>
+        @foreach(var producer in movie.Producers)
+        {
+            <li>@Html.DisplayFor(model => producer.Name)</li>
+        }
+    </ul>
+}
+<p><a asp-action="Index" class="btn btn-primary">Go back</a></p>

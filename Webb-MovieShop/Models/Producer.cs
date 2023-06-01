@@ -2,13 +2,12 @@
 
 namespace Webb_MovieShop.Models
 {
-    public class Actor
+    public class Producer
     {
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
-
-        public List<Actor_Movie> Actors_Movies { get; set; }
+        public Movie Movies { get; set; }
     }
 }
