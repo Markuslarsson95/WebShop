@@ -91,11 +91,10 @@ namespace Webb_MovieShop.Controllers
         {
             string[,] producers =
             {
-                {"Christopher Nolan", "52", "https://m.media-amazon.com/images/M/MV5BNjE3NDQyOTYyMV5BMl5BanBnXkFtZTcwODcyODU2Mw@@._V1_FMjpg_UX1000_.jpg"},
+                {"Christopher Nolan", "52", "https://www.looper.com/img/gallery/rules-actors-have-to-follow-in-christopher-nolan-movies/l-intro-1652977075.jpg"},
                 {"Peter Jackson", "61", "https://m.media-amazon.com/images/M/MV5BYjFjOThjMjgtYzM5ZS00Yjc0LTk5OTAtYWE4Y2IzMDYyZTI5XkEyXkFqcGdeQXVyMTMxMTIwMTE0._V1_FMjpg_UX1000_.jpg"},
                 {"Robert Zemeckis", "71", "https://m.media-amazon.com/images/M/MV5BMTgyMTMzMDUyNl5BMl5BanBnXkFtZTcwODA0ODMyMw@@._V1_.jpg"}
             };
-            //List<Movie> movie = await _context.Movies.ToListAsync();
             for (int i = 0; i < 3; i++)
             {
                 Producer producer = new Producer
@@ -122,6 +121,7 @@ namespace Webb_MovieShop.Controllers
                 {"Inception", "Sci-Fi" , "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.",
                 "https://posters.movieposterdb.com/10_06/2010/1375666/l_1375666_07030c72.jpg", "0"}
             };
+            //Sparar ner producers till en lista
             List<Producer> producers = await _context.Producers.ToListAsync();
             for (int i = 0; i < 4; i++)
             {
@@ -131,8 +131,8 @@ namespace Webb_MovieShop.Controllers
                     Genre = movies[i, 1],
                     Description = movies[i, 2],
                     ImgUrl = movies[i, 3],
-                    //Ska kopplas till rätt producent, hur?
-                    Producer = producers[int.Parse(movies[i,4])]
+                    //Hämtar index position av listan med hjälp av movies ovan
+                    Producer = producers[int.Parse(movies[i, 4])]
                 };
                 _context.Movies.Add(movie);
                 await _context.SaveChangesAsync();

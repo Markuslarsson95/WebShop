@@ -36,6 +36,7 @@ namespace Webb_MovieShop.Controllers
             }
 
             var producer = await _context.Producers
+                .Include(m => m.Movies)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (producer == null)
             {
