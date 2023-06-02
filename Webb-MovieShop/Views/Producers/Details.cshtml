@@ -1,50 +1,63 @@
 ﻿@model Webb_MovieShop.Models.Producer
-
+<link href="~/css/site.css rel="stylesheet" />
 @{
     ViewData["Title"] = "Details";
 }
 
 <h1>Details</h1>
 
+
+
 <div>
     <h4>Producer</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PictureUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PictureUrl)
-        </dd>
-    </dl>
-</div>
-<div>
-    <p class="card-text">
-        <b>Movies: </b>
-        <hr />
-        <div class="row">
-            @foreach (var movie in Model.Movies)
-            {
-                <div class="column text-center">
-                    <br />
-                    <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id">@movie.Title</a>
+    <div class="producer-info">
+        <img class="rounded-circle bordered-image" src="@Model.PictureUrl" alt="">
+        <div>
+            <dl>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <dt class="details-label">
+                            @Html.DisplayNameFor(model => model.Name)
+                        </dt>
+                        <dd class="details-value">
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
+                    </div>
+                    <div class="col-sm-6">
+                        <dt class="details-label-age">
+                            @Html.DisplayNameFor(model => model.Age)
+                        </dt>
+                        <dd class="details-value-age">
+                            @Html.DisplayFor(model => model.Age)
+                        </dd>
+                    </div>
                 </div>
-            }
+            </dl>
         </div>
-    </p>
+    </div>
 </div>
+
+<div>
+    <h4>Movies</h4>
+    <hr />
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+        </tr>
+        @foreach (var movie in Model.Movies)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id">@movie.Title</a>
+                </td>
+                <td>@movie.Genre</td>
+            </tr>
+        }
+    </table>
+</div>
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>

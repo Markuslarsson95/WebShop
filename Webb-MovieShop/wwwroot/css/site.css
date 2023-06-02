@@ -1,25 +1,46 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+   
 }
 
 @media (min-width: 768px) {
   html {
     font-size: 16px;
+    
+    
   }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+html{
+    position:relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color:white;
+    
 }
+/*Måste ändra så att placeholder för mail osv har svart text och att placeholders för privacy är vit!
+body, ::placeholder{
+    color: black;
+}
+    */
+
+
+
 
 .nav-item:hover {
     background-color: #ededed;
@@ -31,13 +52,86 @@ body {
     justify-content: space-between;
     width: 40%;
     margin-bottom: 10px;
+    color:white;
 }
 
 .search-input {
     width: 70%;
+    color:white;
 }
 
 footer {
-    background: #000;
-    color: #fff;
+    margin-top: auto; /* Flytta fotern till botten */
+    background-color: grey;
+    color: black;
+
 }
+
+.details-label {
+    margin-bottom: 5px;
+    margin-left: 10px;
+    color: white;
+}
+
+.details-value {
+    margin-top: -5px;
+    margin-left: 10px;
+    white-space: nowrap;
+    color: white;
+}
+
+.details-value-age {
+    margin-top: -5px;
+    margin-left: 30px;
+    color: white;
+}
+
+.details-label-age {
+    margin-bottom: 5px;
+    margin-left: 30px;
+    color:white;
+}
+
+.producer-info {
+    display: flex;
+    align-items: center;
+    color:white;
+}
+
+    .producer-info img {
+        max-width: 250px;
+        max-height: 250px;
+        margin-right: 20px;
+        color: white;
+    }
+
+table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    color:white;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color:white;
+}
+
+.details-label-movie {
+    margin-bottom: 5px;
+    color:white;
+}
+
+.details-value-movie {
+    margin-top: -5px;
+    margin-left: -250px;
+    color:white;
+}
+
+.bordered-image {
+    border: 2px solid white;
+    
+}
+

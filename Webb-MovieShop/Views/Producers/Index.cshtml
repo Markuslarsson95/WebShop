@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Webb_MovieShop.Models.Producer>
-
+<link href="~/css/site.css rel="stylesheet" />
 @{
     ViewData["Title"] = "Index";
 }
@@ -30,7 +30,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                    <img class="rounded-circle" src="@item.PictureUrl" alt="@item.Name" style="max-width: 100px; max-height: 100px" />
+                    <img class="rounded-circle" src="@item.PictureUrl" alt="@item.Name" style="max-width: 100px; max-height: 100px; border:solid white 2px;" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
