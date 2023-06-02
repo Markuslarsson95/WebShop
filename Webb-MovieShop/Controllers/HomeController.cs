@@ -84,27 +84,25 @@ namespace Webb_MovieShop.Controllers
             // Här lägger vi till användaren i "admin" rollen
             userStore.AddToRoleAsync(newUser, "Admin").Wait();
 
-            await GenerateMovies();
             await GenerateProducers();
-
+            await GenerateMovies();
         }
         private async Task GenerateProducers()
         {
             string[,] producers =
             {
-                {"Christopher Nolan", "52"},
-                {"Peter Jackson", "61"},
-                {"Robert Zemeckis", "71"}
+                {"Christopher Nolan", "52", "https://m.media-amazon.com/images/M/MV5BNjE3NDQyOTYyMV5BMl5BanBnXkFtZTcwODcyODU2Mw@@._V1_FMjpg_UX1000_.jpg"},
+                {"Peter Jackson", "61", "https://m.media-amazon.com/images/M/MV5BYjFjOThjMjgtYzM5ZS00Yjc0LTk5OTAtYWE4Y2IzMDYyZTI5XkEyXkFqcGdeQXVyMTMxMTIwMTE0._V1_FMjpg_UX1000_.jpg"},
+                {"Robert Zemeckis", "71", "https://m.media-amazon.com/images/M/MV5BMTgyMTMzMDUyNl5BMl5BanBnXkFtZTcwODA0ODMyMw@@._V1_.jpg"}
             };
-            List<Movie> movie = await _context.Movies.ToListAsync();
+            //List<Movie> movie = await _context.Movies.ToListAsync();
             for (int i = 0; i < 3; i++)
             {
                 Producer producer = new Producer
                 {
                     Name = producers[i, 0],
                     Age = int.Parse(producers[i, 1]),
-                    //Ska kopplas till rätt film, hur?
-                    Movies = movie[i],
+                    PictureUrl = producers[i, 2]
                 };
             _context.Producers.Add(producer);
             await _context.SaveChangesAsync();
@@ -116,28 +114,29 @@ namespace Webb_MovieShop.Controllers
             string[,] movies =
             {
                 {"The Dark Knight", "Action", "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
-                "https://posters.movieposterdb.com/08_05/2008/468569/s_468569_f0e2cd63.jpg"},
+                "https://posters.movieposterdb.com/08_05/2008/468569/s_468569_f0e2cd63.jpg", "0"},
                 {"The Lord of the Rings: The Return of the King" , "Adventure", "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
-                "https://posters.movieposterdb.com/04_12/2003/0167260/s_183_0167260_6815154e.jpg"},
+                "https://posters.movieposterdb.com/04_12/2003/0167260/s_183_0167260_6815154e.jpg", "1"},
                 {"Forrest Gump", "Drama", "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart.",
-                "https://posters.movieposterdb.com/05_06/1994/0109830/s_21293_0109830_af6ba7a1.jpg"},
+                "https://posters.movieposterdb.com/05_06/1994/0109830/s_21293_0109830_af6ba7a1.jpg", "2"},
                 {"Inception", "Sci-Fi" , "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.",
-                "https://posters.movieposterdb.com/10_06/2010/1375666/l_1375666_07030c72.jpg"}
+                "https://posters.movieposterdb.com/10_06/2010/1375666/l_1375666_07030c72.jpg", "0"}
             };
-            for(int i = 0; i < 4; i++)
+            List<Producer> producers = await _context.Producers.ToListAsync();
+            for (int i = 0; i < 4; i++)
             {
                 Movie movie = new Movie
                 {
                     Title = movies[i, 0],
                     Genre = movies[i, 1],
                     Description = movies[i, 2],
-                    ImgUrl = movies[i, 3]
+                    ImgUrl = movies[i, 3],
+                    //Ska kopplas till rätt producent, hur?
+                    Producer = producers[int.Parse(movies[i,4])]
                 };
                 _context.Movies.Add(movie);
                 await _context.SaveChangesAsync();
             }
         }
-
-        
     }
 }

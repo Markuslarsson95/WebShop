@@ -244,11 +244,16 @@ namespace Webb_MovieShop.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ProducerId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProducerId");
 
                     b.ToTable("Movies");
                 });
@@ -264,16 +269,15 @@ namespace Webb_MovieShop.Data.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<int>("MoviesId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("PictureUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("MoviesId");
+                    b.HasKey("Id");
 
                     b.ToTable("Producers");
                 });
@@ -329,20 +333,20 @@ namespace Webb_MovieShop.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Webb_MovieShop.Models.Producer", b =>
+            modelBuilder.Entity("Webb_MovieShop.Models.Movie", b =>
                 {
-                    b.HasOne("Webb_MovieShop.Models.Movie", "Movies")
-                        .WithMany("Producers")
-                        .HasForeignKey("MoviesId")
+                    b.HasOne("Webb_MovieShop.Models.Producer", "Producer")
+                        .WithMany("Movies")
+                        .HasForeignKey("ProducerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Movies");
+                    b.Navigation("Producer");
                 });
 
-            modelBuilder.Entity("Webb_MovieShop.Models.Movie", b =>
+            modelBuilder.Entity("Webb_MovieShop.Models.Producer", b =>
                 {
-                    b.Navigation("Producers");
+                    b.Navigation("Movies");
                 });
 #pragma warning restore 612, 618
         }

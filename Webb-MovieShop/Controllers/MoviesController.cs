@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -41,7 +40,6 @@ namespace Webb_MovieShop.Controllers
         }
 
         // GET: Movies/Details/5
-        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Movies == null)
@@ -60,7 +58,6 @@ namespace Webb_MovieShop.Controllers
         }
 
         // GET: Movies/Create
-        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -71,7 +68,7 @@ namespace Webb_MovieShop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Genre,Description,Price")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Id,Title,Genre,Description,ImgUrl")] Movie movie)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +80,6 @@ namespace Webb_MovieShop.Controllers
         }
 
         // GET: Movies/Edit/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Movies == null)
@@ -104,7 +100,7 @@ namespace Webb_MovieShop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Genre,Description,Price")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Genre,Description,ImgUrl")] Movie movie)
         {
             if (id != movie.Id)
             {
@@ -135,7 +131,6 @@ namespace Webb_MovieShop.Controllers
         }
 
         // GET: Movies/Delete/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Movies == null)
@@ -160,7 +155,7 @@ namespace Webb_MovieShop.Controllers
         {
             if (_context.Movies == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Movie'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Movies'  is null.");
             }
             var movie = await _context.Movies.FindAsync(id);
             if (movie != null)

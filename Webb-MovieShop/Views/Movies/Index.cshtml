@@ -5,55 +5,51 @@
 }
 
 <h1>Index</h1>
-@if (User.IsInRole("Admin"))
-{
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-}
 
-<!--Lägger till sökruta-->
-<form asp-controller="Movies" asp-action="Index" class="search-form">
-
-    <label for="SearchString" class="sr-only">Title</label>
-    <input id="SearchString" class="form-control search-input" type="text" name="SearchString" />
-     <input class="btn btn-outline-secondary" type="submit" value="Filter" />
-
-</form>
-
-<table class="table table-striped">
-    <thead class="table-dark">
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
         <tr>
-            <th scope="col">
+            <th>
+
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
-            <th scope="col">
+            <th>
                 @Html.DisplayNameFor(model => model.Genre)
             </th>
-            <th scope="col"></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <!--<th>
+            @Html.DisplayNameFor(model => model.ImgUrl)
+            </th>-->
+            
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <a href="@Url.Action("Details", "Movies", new { id = item.Id })">@Html.DisplayFor(modelItem => item.Title)</a>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Genre)
-                </td>
-                
-                @if(User.IsInRole("Admin"))
-                {
-                    <td>
-                        <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                }
-                
-            </tr>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td><img src="@item.ImgUrl" width="100%" alt="@item.Title"></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>

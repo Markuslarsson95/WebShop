@@ -56,7 +56,7 @@ namespace Webb_MovieShop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Age")] Producer producer)
+        public async Task<IActionResult> Create([Bind("Id,Name,Age,PictureUrl")] Producer producer)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace Webb_MovieShop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Age")] Producer producer)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Age,PictureUrl")] Producer producer)
         {
             if (id != producer.Id)
             {
@@ -158,11 +158,6 @@ namespace Webb_MovieShop.Controllers
         private bool ProducerExists(int id)
         {
           return (_context.Producers?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
-
-        public async Task<IActionResult> SeeMovies()
-        {
-            return View(await _context.Producers.Include(p => p.Movies).ToListAsync());
         }
     }
 }

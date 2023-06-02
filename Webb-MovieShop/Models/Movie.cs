@@ -11,6 +11,6 @@ namespace Webb_MovieShop.Models
         public string Description { get; set; }
         public string ImgUrl { get; set; }
 
-        public ICollection<Producer> Producers { get; set; }
+        public Producer Producer { get; set; }
     }
 }
