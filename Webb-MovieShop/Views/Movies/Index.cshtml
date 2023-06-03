@@ -34,7 +34,11 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td><img src="@item.ImgUrl" width="100%" alt="@item.Title"></td>
+                <td>
+                    <a asp-controller="Movies" asp-action="Details" asp-route-id="@item.Id">
+                        <img src="@item.ImgUrl" width="100%" alt="@item.Title">
+                    </a>
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
