@@ -6,15 +6,18 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <form asp-action="Create">
+            <button type="submit" class="btn-create btn-outline-success">Create New</button>
+        </form>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
-            <th>
-
-            </th>
+            <th></th>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
@@ -24,36 +27,50 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
-            <!--<th>
-            @Html.DisplayNameFor(model => model.ImgUrl)
-            </th>-->
-            
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
+        @foreach (var item in Model)
+        {
+            <tr>
                 <td>
                     <a asp-controller="Movies" asp-action="Details" asp-route-id="@item.Id">
                         <img src="@item.ImgUrl" width="100%" alt="@item.Title">
                     </a>
                 </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <form asp-action="Edit" asp-route-id="@item.Id">
+                            <button type="submit" class="btn-edit btn-outline-success">Edit</button>
+                        </form>
+                    }
+                    @if (User.IsInRole("Admin") || User.IsInRole("User"))
+                    {
+
+                        <form asp-action="Details" asp-route-id="@item.Id">
+                            <button type="submit" class="btn-details btn-outline-success">Details</button>
+                        </form>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <form asp-action="Delete" asp-route-id="@item.Id">
+                            <button type="submit" class="btn-delete btn-outline-success">Delete</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+

@@ -42,9 +42,34 @@ namespace Webb_MovieShop.Models
                     },
                     new Producer()
                     {
-                        Name = "Christopher Nolan",
-                        Age = 52
+                        Name = "James Cameron",
+                        Age = 68
                     },
+                    new Producer()
+                    {
+                        Name = "David Fincher",
+                        Age = 60
+                    },
+                    new Producer()
+                    {
+                        Name = "George Lucas",
+                        Age = 79
+                    },
+                    new Producer()
+                    {
+                        Name = "Phil Lord",
+                        Age = 47
+                    },
+                    new Producer()
+                    {
+                        Name = "Gavin O'Connor",
+                        Age = 59
+                    },
+                    new Producer()
+                    {
+                        Name= "Quentin Tarantino",
+                        Age = 60
+                    }
                 });
                 context.SaveChanges();
 
@@ -54,7 +79,7 @@ namespace Webb_MovieShop.Models
                 }
                 context.Movies.AddRange(new List<Movie>()
                     {
-                        new Movie()
+                    new Movie()
                     {
                         Title = "The Dark Knight",
                         Genre = "Action",
@@ -84,8 +109,90 @@ namespace Webb_MovieShop.Models
                         Genre = "Sci-Fi",
                         Description = "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.",
                         ImgUrl = "https://posters.movieposterdb.com/10_06/2010/1375666/l_1375666_07030c72.jpg"
-                    }
-                    });
+                    },
+
+
+                     new Movie()
+                     {
+                         Title = "Avatar",
+                         Genre = "Adventure",
+                         Description = "A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
+                         ImgUrl = "https://posters.movieposterdb.com/23_01/2010/1778212/l_capturing-avatar-movie-poster_5327bfa8.jpg"
+                     },
+
+                     new Movie()
+                     {
+                         Title = "The Social Network",
+                         Genre = "Drama",
+                         Description = "As Harvard student Mark Zuckerberg creates the social networking site that would become known as Facebook, he is sued by the twins who claimed he stole their idea and by the co-founder who was later squeezed out of the business.",
+                         ImgUrl = "https://posters.movieposterdb.com/10_09/2010/1285016/l_1285016_dfc017d5.jpg"
+                     },
+
+                     new Movie()
+                     {
+                         Title = "Star Wars A New Hope",
+                         Genre = "Sci-Fi",
+                         Description = "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.",
+                         ImgUrl = "https://posters.movieposterdb.com/21_01/1977/76759/l_76759_43e2730c.jpg"
+                     },
+
+                     new Movie()
+                     {
+                         Title = "21 Jump Street",
+                         Genre = "Comdey",
+                         Description = "A pair of underachieving cops are sent back to a local high school to blend in and bring down a synthetic drug ring.",
+                         ImgUrl = "https://posters.movieposterdb.com/12_02/2012/1232829/l_1232829_aa4a3d65.jpg"
+                     },
+
+                     new Movie()
+                     {
+                         Title = "Warrior",
+                         Genre = "Drama",
+                         Description = "The youngest son of an alcoholic former boxer returns home, where he's trained by his father for competition in a mixed martial arts tournament - a path that puts the fighter on a collision course with his estranged, older brother.",
+                         ImgUrl = "https://posters.movieposterdb.com/11_11/2011/1291584/l_1291584_3b14b0c2.jpg"
+                     },
+
+                     new Movie()
+                     {
+                         Title = "Fight Club",
+                         Genre = "Drama",
+                         Description = "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.",
+                         ImgUrl = "https://posters.movieposterdb.com/05_09/1999/0137523/l_53787_0137523_7ccf70c6.jpg"
+                     },
+
+                     new Movie()
+                     {
+                         Title = "The Terminator",
+                         Genre = "Action",
+                         Description = "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation.",
+                         ImgUrl = "https://posters.movieposterdb.com/22_11/1991/301928/l_the-terminator-movie-poster_c32bbde4.jpg"
+                     },
+
+                     new Movie()
+                     {
+                         Title = "Back To The Future",
+                         Genre = "Adventure",
+                         Description = "Marty McFly, a 17-year-old high school student, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, the maverick scientist Doc Brown.",
+                         ImgUrl = "https://posters.movieposterdb.com/23_01/1989/2197817/l_back-to-the-future-movie-poster_c8254646.jpg"
+                     },
+
+                     new Movie()
+                     {
+                         Title = "King Kong",
+                         Genre = "Action",
+                         Description = "A greedy film producer assembles a team of moviemakers and sets out for the infamous Skull Island, where they find more than just cannibalistic natives.",
+                         ImgUrl = "https://posters.movieposterdb.com/05_11/2005/0360717/l_68663_0360717_506989dd.jpg"
+                     },
+
+                     new Movie()
+                     {
+                         Title = "Inglourious Basterds",
+                         Genre = "War",
+                         Description = "In Nazi-occupied France during World War II, a plan to assassinate Nazi leaders by a group of Jewish U.S. soldiers coincides with a theatre owner's vengeful plans for the same.",
+                         ImgUrl = "https://posters.movieposterdb.com/22_12/2009/361748/l_inglourious-basterds-movie-poster_10cbca6a.jpg"
+                     },
+
+                     });
                 context.SaveChanges();
 
                 if (context.Roles.Any())

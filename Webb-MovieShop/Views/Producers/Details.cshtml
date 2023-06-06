@@ -50,15 +50,27 @@
         {
             <tr>
                 <td>
-                    <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id">@movie.Title</a>
+                    <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id" style="color:white;">@movie.Title</a>
                 </td>
                 <td>@movie.Genre</td>
             </tr>
         }
     </table>
+    <br />
 </div>
 
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    @if (User.IsInRole("Admin"))
+    {
+        <form asp-action="Edit" asp-route-id="@Model?.Id">
+            <button type="submit" class="btn-edit">Edit</button>
+    </form>
+    }
+    @if (User.IsInRole("Admin"))
+    {
+        <form asp-action="Index">
+            <button type="submit" class="btn-back">Back to List</button>
+    </form>
+    }
 </div>

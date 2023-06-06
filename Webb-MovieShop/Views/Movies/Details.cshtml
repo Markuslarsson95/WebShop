@@ -39,7 +39,7 @@
                     <br>
                     <a asp-controller="Producers" asp-action="Details" asp-route-id="@Model.Producer.Id">
                         <!--@Model.Producer.Name-->
-                        <img class="rounded-circle" src="@Model.Producer.PictureUrl" alt="@Model.Producer.Name" style="max-width: 250px; max-height: 250px;">
+                        <img class="rounded-circle" src="@Model.Producer.PictureUrl" alt="@Model.Producer.Name" style="max-width: 250px; max-height: 250px; border:white 2px solid;">
                     </a>
                 </p>
             </dl>
@@ -47,7 +47,17 @@
     </div>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    @if (User.IsInRole("Admin"))
+    {
+        <form asp-action="Edit" asp-route-id="@Model?.Id">
+            <button type="submit" class="btn-edit">Edit</button>
+        </form>
+    }
+    @if (User.IsInRole("Admin"))
+    {
+        <form asp-action="Index">
+            <button type="submit" class="btn-back">Back to List</button>
+        </form>
+    }
 </div>
 

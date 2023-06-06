@@ -13,9 +13,42 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+header{
+    background-color:black;
+}
+
+.navbar{
+    background-color:grey;
+}
+
+.nav-link{
+    border: solid 2px white;
+    margin-right: 5px;
+    border-radius: 8px;
+        
+}
+
+
+
+.btn-outline-success:hover {
+    background-color: black; /* Ny bakgrundsfärg när musen hovrar över */
+    border-color: white; /* Ny kantfärg när musen hovrar över */
+}
+
+
+
+
+.btn {
+    border: solid 2px white;
+    margin-right: 5px;
+    border-radius: 8px;
+    color: white;
+}
+
     
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+        box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+
 }
 
 html{
@@ -33,18 +66,10 @@ body {
     color:white;
     
 }
-/*Måste ändra så att placeholder för mail osv har svart text och att placeholders för privacy är vit!
-body, ::placeholder{
-    color: black;
-}
-    */
 
 
 
 
-.nav-item:hover {
-    background-color: #ededed;
-}
 
 .search-form {
     display: flex;
@@ -63,7 +88,7 @@ body, ::placeholder{
 footer {
     margin-top: auto; /* Flytta fotern till botten */
     background-color: grey;
-    color: black;
+    
 
 }
 
@@ -103,6 +128,7 @@ footer {
         max-height: 250px;
         margin-right: 20px;
         color: white;
+        
     }
 
 table {
@@ -133,5 +159,78 @@ th, td {
 .bordered-image {
     border: 2px solid white;
     
+}
+
+.btn-details {
+    border: solid 2px white;
+    border-radius: 8px;
+    color: white;
+    background-color: black;
+    margin-bottom: 5px;
+}
+
+
+.btn-edit {
+    border: solid 2px white;
+    border-radius: 8px;
+    color: white;
+    background-color: black;
+    margin-bottom:5px;
+}
+
+.btn-delete {
+    border: solid 2px white;
+    border-radius: 8px;
+    color: white;
+    background-color: black;
+}
+
+.btn-create {
+    border: solid 2px white;
+    border-radius: 8px;
+    color: white;
+    background-color: black;
+}
+
+.btn-back {
+    border: solid 2px white;
+    border-radius: 8px;
+    color: white;
+    background-color: black;
+}
+
+    .btn-back:hover {
+        background-color: white;
+        color: black;
+    }
+
+.btn-create:hover {
+    background-color: white;
+    color: black;
+}
+
+.btn-edit:hover {
+    background-color: white;
+    color: black;
+}
+
+.btn-delete:hover {
+    background-color: white;
+    color: black;
+}
+
+
+.btn-details:hover {
+    background-color:white;
+    color:black;
+    
+}
+
+.rounded-circle  {
+    object-fit: cover;
+    width: 100px; 
+    height: 100px; 
+    border-radius: 50%;
+    border: solid 2px white;
 }
 

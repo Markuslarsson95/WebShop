@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +30,7 @@ namespace Webb_MovieShop.Controllers
         }
 
         // GET: Producers/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Producers == null)
@@ -47,6 +50,7 @@ namespace Webb_MovieShop.Controllers
         }
 
         // GET: Producers/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -69,6 +73,7 @@ namespace Webb_MovieShop.Controllers
         }
 
         // GET: Producers/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Producers == null)
@@ -120,6 +125,7 @@ namespace Webb_MovieShop.Controllers
         }
 
         // GET: Producers/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Producers == null)
