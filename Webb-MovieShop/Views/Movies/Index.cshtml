@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Webb_MovieShop.Models.Movie>
+﻿@model Webb_MovieShop.Models.MovieGenreViewModel
 <link href="~/css/site.css rel="stylesheet" />
 @{
     ViewData["Title"] = "Index";
@@ -14,10 +14,15 @@
         </form>
     </p>
 }
-<form asp-controller="Movies" asp-action="Index">
+<form asp-controller="Movies" asp-action="Index" method="get">
     <p>
-        Title: <input type="text" name="SearchString" />
-        <input type="submit" value="Search" />
+
+        <select asp-for="MovieGenre" asp-items="Model.Genres">
+            <option value="">All</option>
+        </select>
+
+        Title: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
     </p>
 </form>
 <table class="table">
@@ -25,19 +30,19 @@
         <tr>
             <th></th>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.Movies![0].Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Genre)
+                @Html.DisplayNameFor(model => model.Movies![0].Genre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.Movies![0].Description)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Movies!)
         {
             <tr>
                 <td>

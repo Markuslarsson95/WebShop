@@ -23,22 +23,38 @@ namespace Webb_MovieShop.Controllers
 
         // GET: Movies
         // Hämtar film från sökfält
-        public async Task<IActionResult> Index(string searchString)
+        // GET: Movies
+        public async Task<IActionResult> Index(string movieGenre, string searchString)
         {
             if (_context.Movies == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Movie'  is null.");
+                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
             }
 
+            // Use LINQ to get list of genres.
+            IQueryable<string> genreQuery = from m in _context.Movies
+                                            orderby m.Genre
+                                            select m.Genre;
             var movies = from m in _context.Movies
                          select m;
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
                 movies = movies.Where(s => s.Title!.Contains(searchString));
             }
 
-            return View(await movies.ToListAsync());
+            if (!string.IsNullOrEmpty(movieGenre))
+            {
+                movies = movies.Where(x => x.Genre == movieGenre);
+            }
+
+            var movieGenreVM = new MovieGenreViewModel
+            {
+                Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
+                Movies = await movies.ToListAsync()
+            };
+
+            return View(movieGenreVM);
         }
 
         // GET: Movies/Details/5
