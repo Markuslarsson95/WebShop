@@ -22,11 +22,23 @@ namespace Webb_MovieShop.Controllers
         }
 
         // GET: Producers
-        public async Task<IActionResult> Index()
+        // Hämtar producent från sökfält
+        public async Task<IActionResult> Index(string searchString)
         {
-              return _context.Producers != null ? 
-                          View(await _context.Producers.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Producers'  is null.");
+            if (_context.Producers == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Producer'  is null.");
+            }
+
+            var producers = from m in _context.Producers
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                producers = producers.Where(s => s.Name!.Contains(searchString));
+            }
+
+            return View(await producers.ToListAsync());
         }
 
         // GET: Producers/Details/5

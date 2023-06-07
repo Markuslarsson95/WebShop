@@ -14,6 +14,12 @@
         </form>
     </p>
 }
+<form asp-controller="Producers" asp-action="Index">
+    <p>
+        Name: <input type="text" name="SearchString" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -35,21 +41,9 @@
 @foreach (var item in Model) {
         <tr>
              <td>
-              @if (User.IsInRole("Admin")|| User.IsInRole("User"))
-              {
                  <a asp-controller="Producers" asp-action="Details" asp-route-id="@item.Id">
-
-                   <img class="rounded-circle" src="@item.PictureUrl" alt="@item.Name" />
-
+                 <img class="rounded-circle" src="@item.PictureUrl" alt="@item.Name" />
                  </a>
-              }
-              else
-              {
-                  
-                  <img class="rounded-circle" src="@item.PictureUrl" alt="@item.Name"  />
-                  
-              }
-
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -62,21 +56,24 @@
                     <!--Behöver lösa så att även rolen User har tillgång till detta, gäller även details vyerna-->
                     @if (User.IsInRole("Admin"))
                     {
-                        <form asp-action="Edit" asp-route-id="@item.Id">
-                            <button type="submit" class="btn-edit btn-outline-success">Edit</button>
-                        </form>
+                        <a asp-action="Edit" asp-route-id="@item.Id">
+                            <button type="button" class="btn-edit btn-outline-success">Edit</button>
+                        </a>
+                        <br />
                     }
                     @if (User.IsInRole("Admin") || User.IsInRole("User"))
                     {
-                        <form asp-action="Details" asp-route-id="@item.Id">
-                            <button type="submit" class="btn-details btn-outline-success">Details</button>
-                        </form>
+                        <a asp-action="Details" asp-route-id="@item.Id">
+                            <button type="button" class="btn-details btn-outline-success">Details</button>
+                        </a>
+                        <br />
                     }
                     @if (User.IsInRole("Admin"))
                     {
-                        <form asp-action="Delete" asp-route-id="@item.Id">
-                            <button type="submit" class="btn-delete btn-outline-success">Delete</button>
-                        </form>
+                        <a asp-action="Delete" asp-route-id="@item.Id">
+                            <button type="button" class="btn-delete btn-outline-success">Delete</button>
+                        </a>
+                        <br />
                     }
                 </td>
         </tr>

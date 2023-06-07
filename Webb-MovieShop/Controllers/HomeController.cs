@@ -25,8 +25,8 @@ namespace Webb_MovieShop.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //Kolla om admin roll finns till DB
-            if (!_context.Roles.Any(m => m.Name == "Admin"))
+            //Kolla om admin, filmer eller prducenter finns i databasen
+            if (!_context.Roles.Any(m => m.Name == "Admin") || !_context.Movies.Any() || !_context.Producers.Any())
             {
                 //Anropa funktion för populate DB
                 await FillDB();
@@ -34,7 +34,7 @@ namespace Webb_MovieShop.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult About()
         {
             return View();
         }

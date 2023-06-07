@@ -169,13 +169,21 @@ th, td {
     margin-bottom: 5px;
 }
 
+.btnEdit {
+    border: solid 2px white;
+    border-radius: 8px;
+    color: white;
+    background-color: black;
+    margin-bottom: 5px;
+    width:150px;
+}
 
 .btn-edit {
     border: solid 2px white;
     border-radius: 8px;
     color: white;
     background-color: black;
-    margin-bottom:5px;
+    margin-bottom: 5px;
 }
 
 .btn-delete {
@@ -197,6 +205,7 @@ th, td {
     border-radius: 8px;
     color: white;
     background-color: black;
+    margin-top:5px;
 }
 
     .btn-back:hover {

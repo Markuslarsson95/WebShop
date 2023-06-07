@@ -14,6 +14,12 @@
         </form>
     </p>
 }
+<form asp-controller="Movies" asp-action="Index">
+    <p>
+        Title: <input type="text" name="SearchString" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -51,22 +57,25 @@
                 <td>
                     @if (User.IsInRole("Admin"))
                     {
-                        <form asp-action="Edit" asp-route-id="@item.Id">
-                            <button type="submit" class="btn-edit btn-outline-success">Edit</button>
-                        </form>
+                        <a asp-action="Edit" asp-route-id="@item.Id">
+                            <button type="button" class="btn-edit btn-outline-success">Edit</button>
+                        </a>
+                        <br />
                     }
                     @if (User.IsInRole("Admin") || User.IsInRole("User"))
                     {
 
-                        <form asp-action="Details" asp-route-id="@item.Id">
-                            <button type="submit" class="btn-details btn-outline-success">Details</button>
-                        </form>
+                        <a asp-action="Details" asp-route-id="@item.Id">
+                            <button type="button" class="btn-details btn-outline-success">Details</button>
+                        </a>
+                        <br />
                     }
                     @if (User.IsInRole("Admin"))
                     {
-                        <form asp-action="Delete" asp-route-id="@item.Id">
-                            <button type="submit" class="btn-delete btn-outline-success">Delete</button>
-                        </form>
+                        <a asp-action="Delete" asp-route-id="@item.Id">
+                            <button type="button" class="btn-delete btn-outline-success">Delete</button>
+                        </a>
+                        <br />
                     }
                 </td>
             </tr>
