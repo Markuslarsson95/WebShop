@@ -53,11 +53,10 @@
             <button type="submit" class="btn-edit">Edit</button>
         </form>
     }
-    @if (User.IsInRole("Admin"))
-    {
-        <form asp-action="Index">
+   
+    <form asp-action="Index">
             <button type="submit" class="btn-back">Back to List</button>
-        </form>
-    }
+    </form>
+    
 </div>
 
