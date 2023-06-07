@@ -175,7 +175,7 @@ th, td {
     color: white;
     background-color: black;
     margin-bottom: 5px;
-    width:150px;
+    
 }
 
 .btn-edit {
@@ -243,3 +243,21 @@ th, td {
     border: solid 2px white;
 }
 
+.btn-filter {
+    border: solid 2px white;
+    border-radius: 8px;
+    color: white;
+    background-color: black;
+    
+}
+
+.btn-filter:hover {
+        background-color: white;
+        color: black;
+}
+
+.inputSearch{
+    border:solid 2px white;
+    border-radius:8px;
+    color:black;
+}
