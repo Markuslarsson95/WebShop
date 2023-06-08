@@ -21,8 +21,7 @@ namespace Webb_MovieShop.Controllers
             _context = context;
         }
 
-        // GET: Movies
-        // Hämtar film från sökfält
+        // Hämtar film från sökfält och droplist av gengre
         // GET: Movies
         public async Task<IActionResult> Index(string movieGenre, string searchString)
         {

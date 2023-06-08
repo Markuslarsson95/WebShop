@@ -9,9 +9,9 @@
 @if (User.IsInRole("Admin"))
 {
     <p>
-        <form asp-action="Create">
+        <a asp-action="Create">
             <button type="submit" class="btn-create btn-outline-success">Create New</button>
-        </form>
+        </a>
     </p>
 }
 <form asp-controller="Producers" asp-action="Index">

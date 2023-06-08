@@ -63,7 +63,7 @@ namespace Webb_MovieShop.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            //Skapa nya users
+            //Skapa admin user
             string user = "Admin";
             string ePostHandler = "@gmail.com";
 
