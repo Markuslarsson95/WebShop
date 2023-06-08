@@ -80,6 +80,8 @@ namespace Webb_MovieShop.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
+            var producers = _context.Producers.ToList();
+            ViewBag.Producers = producers;
             return View();
         }
 
@@ -88,14 +90,19 @@ namespace Webb_MovieShop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Genre,Description,ImgUrl")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Id,Title,Genre,Description,ImgUrl,ProducerId")] Movie movie)
         {
             if (ModelState.IsValid)
             {
+                movie.ProducerId = movie.ProducerId;
                 _context.Add(movie);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            var producers = _context.Producers.ToList();
+            ViewBag.Producers = producers;
+
             return View(movie);
         }
 

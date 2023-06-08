@@ -11,7 +11,7 @@ namespace Webb_MovieShop.Models
         public string Genre { get; set; }
         public string Description { get; set; }
         public string ImgUrl { get; set; }
-
+        public int ProducerId { get; set; }
         public Producer? Producer { get; set; }
     }
 }
