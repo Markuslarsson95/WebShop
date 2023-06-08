@@ -110,7 +110,7 @@ namespace Webb_MovieShop.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Movies == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -120,15 +120,17 @@ namespace Webb_MovieShop.Controllers
             {
                 return NotFound();
             }
+
+            var producers = _context.Producers.ToList();
+            ViewBag.Producers = producers;
+
             return View(movie);
         }
 
         // POST: Movies/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Genre,Description,ImgUrl")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Genre,Description,ImgUrl,ProducerId")] Movie movie)
         {
             if (id != movie.Id)
             {
@@ -155,6 +157,10 @@ namespace Webb_MovieShop.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            var producers = _context.Producers.ToList();
+            ViewBag.Producers = producers;
+
             return View(movie);
         }
 
