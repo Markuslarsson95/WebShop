@@ -22,7 +22,7 @@
 1. Klona eller ladda ner projektet från GitHub-repositoriet.
 2. Öppna projektet i Visual Studio. 
 3. Konfigurera anslutningssträngen till SQL Server-databasen i appsettings.json.
-4. Skriv "update-database" i Package-Manager-Console. Det för att fylla databasen med den redan skapade datan.
+4. Skriv "update-database" i Package-Manager-Console för att sätta upp SQL servern.
 5. Starta applikationen och ta del av registret.
 
  
