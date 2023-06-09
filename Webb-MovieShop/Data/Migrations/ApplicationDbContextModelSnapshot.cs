@@ -244,7 +244,7 @@ namespace Webb_MovieShop.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProducerId")
+                    b.Property<int?>("ProducerId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -337,9 +337,7 @@ namespace Webb_MovieShop.Data.Migrations
                 {
                     b.HasOne("Webb_MovieShop.Models.Producer", "Producer")
                         .WithMany("Movies")
-                        .HasForeignKey("ProducerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProducerId");
 
                     b.Navigation("Producer");
                 });

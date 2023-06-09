@@ -12,7 +12,7 @@ using Webb_MovieShop.Data;
 namespace Webb_MovieShop.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230608193640_MovieProducerId")]
+    [Migration("20230609063021_MovieProducerId")]
     partial class MovieProducerId
     {
         /// <inheritdoc />
@@ -247,7 +247,7 @@ namespace Webb_MovieShop.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProducerId")
+                    b.Property<int?>("ProducerId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -340,9 +340,7 @@ namespace Webb_MovieShop.Data.Migrations
                 {
                     b.HasOne("Webb_MovieShop.Models.Producer", "Producer")
                         .WithMany("Movies")
-                        .HasForeignKey("ProducerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProducerId");
 
                     b.Navigation("Producer");
                 });

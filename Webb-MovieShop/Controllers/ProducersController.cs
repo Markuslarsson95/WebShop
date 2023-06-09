@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using Webb_MovieShop.Data;
 using Webb_MovieShop.Models;
 
@@ -31,7 +26,7 @@ namespace Webb_MovieShop.Controllers
             }
 
             var producers = from m in _context.Producers
-                         select m;
+                            select m;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -160,23 +155,32 @@ namespace Webb_MovieShop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Producers == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Producers'  is null.");
-            }
             var producer = await _context.Producers.FindAsync(id);
-            if (producer != null)
+            if (producer == null)
             {
-                _context.Producers.Remove(producer);
+                return NotFound();
             }
-            
+
+            // Hämtar alla filmer som är kopplade till producente
+            var movies = await _context.Movies.Where(m => m.ProducerId == producer.Id).ToListAsync();
+
+            // Sätter producerId till "null"
+            foreach (var movie in movies)
+            {
+                movie.ProducerId = null;
+            }
+
+            _context.Producers.Remove(producer);
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
+
+
         private bool ProducerExists(int id)
         {
-          return (_context.Producers?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Producers?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

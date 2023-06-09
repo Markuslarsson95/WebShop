@@ -34,7 +34,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="ProducerId" class="control-label"></label>
-                <select asp-for="ProducerId" asp-items="@(new SelectList(ViewBag.Producers, "Id", "Name"))" class="form-control">
+                @{
+                    var producers = ((IEnumerable<Producer>)ViewBag.Producers).OrderBy(p => p.Name);
+                    var selectList = new SelectList(producers, "Id", "Name");
+                }
+                <select asp-for="ProducerId" asp-items="@(selectList)" class="form-control">
                     <option value="">-- Select a Producer --</option>
                 </select>
                 <span asp-validation-for="ProducerId" class="text-danger"></span>

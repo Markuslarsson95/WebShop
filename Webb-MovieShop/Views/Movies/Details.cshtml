@@ -34,14 +34,17 @@
                 <dd class="col-sm-8 details-value-movie">
                     @Html.DisplayFor(model => model.Description)
                 </dd>
-                <p class="card-text col-sm-12">
-                    <b>Producer: </b>
-                    <br>
+                <!--Har filmen ingen producent ska nedstående inte visas-->
+                @if (Model.Producer != null)
+                {
+                     <dd class="card-text col-sm-12">
+                     <b>Producer: </b>
+                     <br />
                     <a asp-controller="Producers" asp-action="Details" asp-route-id="@Model.Producer.Id">
-                        <!--@Model.Producer.Name-->
-                        <img class="rounded-circle" src="@Model.Producer.PictureUrl" alt="@Model.Producer.Name" style="max-width: 250px; max-height: 250px; border:white 2px solid;">
+                    <img class="rounded-circle" src="@Model.Producer.PictureUrl" alt="@Model.Producer.Name" style="max-width: 250px; max-height: 250px; border:white 2px solid;" />
                     </a>
-                </p>
+                    </dd>
+                }
             </dl>
         </div>
     </div>
