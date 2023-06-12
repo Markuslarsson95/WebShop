@@ -24,5 +24,6 @@
 3. Konfigurera anslutningssträngen till SQL Server-databasen i appsettings.json.
 4. Skriv "update-database" i Package-Manager-Console för att sätta upp SQL servern.
 5. Starta applikationen och ta del av registret.
+6. För att logga in som admin använd "admin@gmail.com" med lösenord "12345"
 
  
